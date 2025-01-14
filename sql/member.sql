@@ -1,0 +1,16 @@
+CREATE DATABASE db250114;
+SHOW DATABASES;
+USE db250114;
+
+CREATE TABLE MEMBER(
+	uid int,
+	uname VARCHAR(10) NOT NULL,
+	PRIMARY KEY(uid)
+);
+
+ALTER TABLE member modify column uid int not null AUTO_INCREMENT;
+
+SELECT * FROM MEMBER;
+
+INSERT INTO MEMBER(uname) VALUES ('James');
+INSERT INTO MEMBER(uname) VALUES ('Alice');
