@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- 타입리프 사용 선언 -->
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>타임리프</title>
+	</head>
+	<body>
+		<!-- 01: 직접 문자 삽입 -->
+		<h1 th:text="${msg}">표시되는부분</h1>
+		
+		<!-- 02: 인라인 처리 -->
+		<h1>안녕하세요! [[${name}]]씨</h1>
+		
+		<!-- 03: 값 결합 -->
+		<h1 th:text="'오늘의 날씨는 ' + '맑음 ' + '입니다'">표시부분</h1>
+		
+		<!-- 04: 값 결합(리터럴 치환) -->
+		<h1 th:text="|안녕하세요 ${name}씨|">표시부분</h1>
+		
+		<!-- 05: 지역 변수 -->
+		<div th:with="n1=1, n2=2">
+			<span th:text="|${n1} + ${n2} = ${n1+n2}|"></span>
+		</div>
+		
+		<!-- 06: 비교와 등가 -->
+		<span th:text="1>10"></span>
+		<span th:text="1<10"></span>
+		<span th:text="1>=10"></span>
+		<span th:text="1<=10"></span>
+		<span th:text="1==10"></span>
+		<span th:text="1!=10"></span>
+		<span th:text="James == James"></span>
+		<span th:text="James != James"></span>
+		
+		<!-- 07: 조건 연산자 -->
+		<p th:text="${name} == 'James' ? 'true' : 'false'"></p>
+		
+		<!-- 08: 조건 분기(true) -->
+		<div th:if="${name} == 'James'">
+			<p>James 입니다</p>
+		</div>
+		
+		<!-- 09: 조건 분기(false) -->
+		<div th:unless="${name} == 'James'">
+			<p>James 아닙니다.</p>
+		</div>
+		
+		<!-- 10: switch -->
+		<div th:switch="${name}">
+			<p th:case="James" th:text="|${name} 입니다|"></p>
+			<p th:case="Alice" th:text="|${name} 입니다|"></p>
+			<p th:case="Jun" th:text="|${name} 입니다|"></p>
+			<p th:case="*">명부에 없습니다</p>
+		</div>
+		
+		<!-- 11: 참조(데이터를 결합한 객체) -->
+		<p th:text="${mb.id}">ID</p>
+		<p th:text="${mb.name}">이름</p>
+		<p th:text="${mb['id']}">ID</p>
+		<p th:text="${mb['name']}">이름</p>
+
+		<!-- 12: 참조(th:object) -->
+		<div th:object="${mb}">
+			<p th:text="*{id}">ID</p>
+			<p th:text="*{name}">이름</p>
+			<p th:text="*{['id']}">이름</p>
+			<p th:text="*{['name']}">이름</p>
+		</div>
+		
+		<!-- 13: 참조(List) -->
+		<p th:text="${list[0]}">방위</p>
+		<p th:text="${list[1]}">방위</p>
+		<p th:text="${list[2]}">방위</p>
+		<p th:text="${list[3]}">방위</p>
+		
+		<!-- 14: 참조(Map) -->
+		<p th:text="$map.">
+		
+	</body>
+</html>
